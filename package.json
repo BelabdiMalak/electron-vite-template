@@ -1,0 +1,70 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Ap description",
+  "author": {
+    "name": "BELABDI Malak",
+    "email": "malakbelabdi@gmail.com"
+  },
+  "type": "module",
+  "electron": "electron .",
+  "main": "electron.js",
+  "scripts": {
+    "start": "concurrently \"vite\" \"npm run electron\"",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron": "electron electron.js",
+    "package": "electron-builder",
+    "prod": "npm run build && npm run package"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "concurrently": "^9.0.1",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.7",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "electron-is-dev": "^3.0.1",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7"
+  },
+  "build": {
+    "appId": "com.example.app",
+    "productName": "app_name",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.js"
+    ],
+    "extraResources": {
+      "from": "dist/",
+      "to": "app/dist/"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "category": "Utility"
+    }
+  }
+}
